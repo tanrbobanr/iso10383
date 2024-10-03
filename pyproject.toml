@@ -29,7 +29,7 @@ keywords = [
     "market identifier codes",
     "mics",
 ]
-requires-python = "3.8+"
+requires-python = ">=3.8"
 
 # See: https://pypi.org/classifiers/
 classifiers = [
@@ -72,3 +72,6 @@ Source = "https://github.com/tanrbobanr/iso10383"
 # See: https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html#dynamic-metadata
 [tool.setuptools.dynamic]
 version = { attr = "iso10383.__version__" }
+
+[tool.setuptools.package-data]
+iso10383 = ["_data"]
