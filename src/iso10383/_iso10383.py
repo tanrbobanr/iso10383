@@ -10,11 +10,22 @@ __license__ = "Apache 2.0 License"
 __copyright__ = "Copyright (c) 2024 Tanner Corcoran"
 
 
+import sys
 import enum
 import pathlib
 import datetime
 import dataclasses
-from typing import *
+from typing import (
+    Any,
+    BinaryIO,
+    TypeVar,
+    Union,
+)
+from collections.abc import Callable
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self
 
 
 _T = TypeVar("_T")
@@ -550,6 +561,7 @@ class City(enum.Enum):
     zhengzhou                 = _City(342, "Zhengzhou")
     zilina                    = _City(343, "Zilina")
     zurich                    = _City(344, "Zurich")
+    milton_keynes             = _City(345, "Milton Keynes")
 
     value: _City
 
@@ -1779,7 +1791,6 @@ class MIC(enum.Enum):
     lava = None
     lafd = None
     lchc = None
-    lcur = None
     lica = None
     liqu = None
     liqf = None
@@ -2661,6 +2672,17 @@ class MIC(enum.Enum):
     xmti = None
     xnrg = None
     alpx = None
+    bpxx = None
+    ctdd = None
+    ctcc = None
+    ctss = None
+    nzxd = None
+    peur = None
+    fgml = None
+    phel = None
+    pcse = None
+    psto = None
+    pfse = None
     fnfx = None
     nzfx = None
     bacr = None
@@ -3177,6 +3199,7 @@ class MIC(enum.Enum):
     ifed = None
     vkab = None
     lafl = None
+    lcur = None
     liqh = None
     lmad = None
     lmnx = None
@@ -3318,7 +3341,7 @@ class _Deserializer:
         )
 
     @staticmethod
-    def _e(buf: BinaryIO, size: int, enum_class: Type[_E]) -> _E:
+    def _e(buf: BinaryIO, size: int, enum_class: type[_E]) -> _E:
         return enum_class._value2member_map_[
             int.from_bytes(buf.read(size), "big")
         ]
@@ -3335,8 +3358,8 @@ class _Deserializer:
 
     @classmethod
     def deserialize(
-        cls, buf: BinaryIO, existing: Dict[str, MICEntry]
-    ) -> Tuple[str, MICEntry]:
+        cls, buf: BinaryIO, existing: dict[str, MICEntry]
+    ) -> tuple[str, MICEntry]:
         def _m(value: Union[str, None]) -> Union[MICEntry, None]:
             if value:
                 return existing[cls._format_mic(value)]
@@ -3365,7 +3388,7 @@ class _Deserializer:
 
 
 def _build_mic(data: pathlib.Path) -> enum.Enum:
-    mics: Dict[str, MICEntry] = dict()
+    mics: dict[str, MICEntry] = dict()
 
     # deserialize data file
     with data.open("rb") as infile:

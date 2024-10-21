@@ -10,11 +10,22 @@ __license__ = "Apache 2.0 License"
 __copyright__ = "Copyright (c) 2024 Tanner Corcoran"
 
 
+import sys
 import enum
 import pathlib
 import datetime
 import dataclasses
-from typing import *
+from typing import (
+    Any,
+    BinaryIO,
+    TypeVar,
+    Union,
+)
+from collections.abc import Callable
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self
 
 
 _T = TypeVar("_T")
@@ -550,6 +561,7 @@ class City(enum.Enum):
     zhengzhou                 = _City(342, "Zhengzhou")
     zilina                    = _City(343, "Zilina")
     zurich                    = _City(344, "Zurich")
+    milton_keynes             = _City(345, "Milton Keynes")
 
     value: _City
 

@@ -26,7 +26,7 @@ class _Deserializer:
         )
 
     @staticmethod
-    def _e(buf: BinaryIO, size: int, enum_class: Type[_E]) -> _E:
+    def _e(buf: BinaryIO, size: int, enum_class: type[_E]) -> _E:
         return enum_class._value2member_map_[
             int.from_bytes(buf.read(size), "big")
         ]
@@ -43,8 +43,8 @@ class _Deserializer:
 
     @classmethod
     def deserialize(
-        cls, buf: BinaryIO, existing: Dict[str, MICEntry]
-    ) -> Tuple[str, MICEntry]:
+        cls, buf: BinaryIO, existing: dict[str, MICEntry]
+    ) -> tuple[str, MICEntry]:
         def _m(value: Union[str, None]) -> Union[MICEntry, None]:
             if value:
                 return existing[cls._format_mic(value)]
@@ -73,7 +73,7 @@ class _Deserializer:
 
 
 def _build_mic(data: pathlib.Path) -> enum.Enum:
-    mics: Dict[str, MICEntry] = dict()
+    mics: dict[str, MICEntry] = dict()
 
     # deserialize data file
     with data.open("rb") as infile:
