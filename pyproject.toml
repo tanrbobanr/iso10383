@@ -15,7 +15,9 @@ maintainers = [
 ]
 
 # See: https://packaging.python.org/en/latest/specifications/dependency-specifiers/#dependency-specifiers
-dependencies = []
+dependencies = [
+    "typing_extensions >= 4.0.0; python_version < '3.11'",
+]
 
 # See: https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html#dynamic-metadata
 dynamic = [
