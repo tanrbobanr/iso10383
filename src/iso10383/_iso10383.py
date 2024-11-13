@@ -561,7 +561,10 @@ class City(enum.Enum):
     zhengzhou                 = _City(342, "Zhengzhou")
     zilina                    = _City(343, "Zilina")
     zurich                    = _City(344, "Zurich")
+
+    # added after initial package release
     milton_keynes             = _City(345, "Milton Keynes")
+    hradec_kralove            = _City(346, "Hradec Kralove")
 
     value: _City
 
@@ -2630,6 +2633,7 @@ class MIC(enum.Enum):
     octc = None
     icps = None
     mssa = None
+    vams = None
     ibco = None
     hwhe = None
     xema = None
@@ -2683,6 +2687,17 @@ class MIC(enum.Enum):
     pcse = None
     psto = None
     pfse = None
+    mepx = None
+    bfsd = None
+    opmx = None
+    ivwp = None
+    onex = None
+    onep = None
+    gtsm = None
+    wmfs = None
+    gara = None
+    wmsw = None
+    besa = None
     fnfx = None
     nzfx = None
     bacr = None
@@ -3321,6 +3336,7 @@ class _Deserializer:
         b = buf.read(1)
         if b[0]:
             return deserializer(buf, *args)
+        return None
 
     @staticmethod
     def _s(buf: BinaryIO, size: int) -> str:
@@ -3342,9 +3358,14 @@ class _Deserializer:
 
     @staticmethod
     def _e(buf: BinaryIO, size: int, enum_class: type[_E]) -> _E:
-        return enum_class._value2member_map_[
+        e = enum_class._value2member_map_[
             int.from_bytes(buf.read(size), "big")
         ]
+        if not isinstance(e, enum_class):
+            raise ValueError(
+                "'_value2member_map_' contains incorrect enum value"
+            )
+        return e
 
     @staticmethod
     def _format_mic(mic: str) -> str:
@@ -3363,6 +3384,7 @@ class _Deserializer:
         def _m(value: Union[str, None]) -> Union[MICEntry, None]:
             if value:
                 return existing[cls._format_mic(value)]
+            return None
 
         entry = MICEntry(
             mic                     = cls._s(buf, 1),
@@ -3401,4 +3423,4 @@ def _build_mic(data: pathlib.Path) -> enum.Enum:
     return enum.Enum("MIC", mics)
 
 
-MIC = _build_mic(pathlib.Path(__file__).parent / "_data")
+globals()["MIC"] = _build_mic(pathlib.Path(__file__).parent / "_data")

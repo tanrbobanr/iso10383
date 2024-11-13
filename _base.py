@@ -561,7 +561,10 @@ class City(enum.Enum):
     zhengzhou                 = _City(342, "Zhengzhou")
     zilina                    = _City(343, "Zilina")
     zurich                    = _City(344, "Zurich")
+
+    # added after initial package release
     milton_keynes             = _City(345, "Milton Keynes")
+    hradec_kralove            = _City(346, "Hradec Kralove")
 
     value: _City
 

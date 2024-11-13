@@ -75,4 +75,4 @@ Source = "https://github.com/tanrbobanr/iso10383"
 version = { attr = "iso10383.__version__" }
 
 [tool.setuptools.package-data]
-iso10383 = ["_data"]
+iso10383 = ["_data", "py.typed"]

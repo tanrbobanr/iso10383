@@ -108,7 +108,7 @@ class Parser:
                     continue
 
                 mname, inst_desc, *_ = (
-                    *re.split(r" - ", mname_and_inst_desc, 1),
+                    *re.split(r" - ", mname_and_inst_desc, maxsplit=1),
                     None,
                 )
 

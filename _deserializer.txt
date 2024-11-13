@@ -6,6 +6,7 @@ class _Deserializer:
         b = buf.read(1)
         if b[0]:
             return deserializer(buf, *args)
+        return None
 
     @staticmethod
     def _s(buf: BinaryIO, size: int) -> str:
@@ -27,9 +28,14 @@ class _Deserializer:
 
     @staticmethod
     def _e(buf: BinaryIO, size: int, enum_class: type[_E]) -> _E:
-        return enum_class._value2member_map_[
+        e = enum_class._value2member_map_[
             int.from_bytes(buf.read(size), "big")
         ]
+        if not isinstance(e, enum_class):
+            raise ValueError(
+                "'_value2member_map_' contains incorrect enum value"
+            )
+        return e
 
     @staticmethod
     def _format_mic(mic: str) -> str:
@@ -48,6 +54,7 @@ class _Deserializer:
         def _m(value: Union[str, None]) -> Union[MICEntry, None]:
             if value:
                 return existing[cls._format_mic(value)]
+            return None
 
         entry = MICEntry(
             mic                     = cls._s(buf, 1),
@@ -86,4 +93,4 @@ def _build_mic(data: pathlib.Path) -> enum.Enum:
     return enum.Enum("MIC", mics)
 
 
-MIC = _build_mic(pathlib.Path(__file__).parent / "_data")
+globals()["MIC"] = _build_mic(pathlib.Path(__file__).parent / "_data")
