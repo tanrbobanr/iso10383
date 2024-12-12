@@ -29,7 +29,7 @@ else:
 
 
 _T = TypeVar("_T")
-_E = TypeVar("_E", bound=enum.EnumMeta)
+_E = TypeVar("_E", bound=enum.Enum)
 
 
 class MCC(enum.Enum):

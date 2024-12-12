@@ -29,7 +29,7 @@ else:
 
 
 _T = TypeVar("_T")
-_E = TypeVar("_E", bound=enum.EnumMeta)
+_E = TypeVar("_E", bound=enum.Enum)
 
 
 class MCC(enum.Enum):
@@ -2654,6 +2654,7 @@ class MIC(enum.Enum):
     tdxs = None
     dmad = None
     wflp = None
+    xacd = None
     hane = None
     hand = None
     hanc = None
@@ -2680,9 +2681,10 @@ class MIC(enum.Enum):
     ctdd = None
     ctcc = None
     ctss = None
+    fgml = None
+    xjax = None
     nzxd = None
     peur = None
-    fgml = None
     phel = None
     pcse = None
     psto = None
@@ -2696,8 +2698,11 @@ class MIC(enum.Enum):
     gtsm = None
     wmfs = None
     gara = None
-    wmsw = None
     besa = None
+    wmsw = None
+    wmus = None
+    wtrs = None
+    lakx = None
     fnfx = None
     nzfx = None
     bacr = None
