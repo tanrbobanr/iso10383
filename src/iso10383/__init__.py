@@ -10,7 +10,7 @@ __author__ = "Tanner Corcoran"
 __email__ = "tannerbcorcoran@gmail.com"
 __license__ = "Apache 2.0 License"
 __copyright__ = "Copyright (c) 2024 Tanner Corcoran"
-__version__ = "2024.11.12"
+__version__ = "2024.12.09"
 __description__ = (
     "A wrapper around the data provided by the ISO 10383 specification."
 )
