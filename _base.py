@@ -201,6 +201,9 @@ class ISOCC(enum.Enum):
     zw = 146
     zz = 147
 
+    # added after initial release
+    vg = 148
+
 
 class _City(int):
     _name: str
@@ -565,6 +568,8 @@ class City(enum.Enum):
     # added after initial package release
     milton_keynes             = _City(345, "Milton Keynes")
     hradec_kralove            = _City(346, "Hradec Kralove")
+    zug                       = _City(347, "Zug")
+    tortola                   = _City(348, "Tortola")
 
     value: _City
 
