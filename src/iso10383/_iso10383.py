@@ -201,6 +201,9 @@ class ISOCC(enum.Enum):
     zw = 146
     zz = 147
 
+    # added after initial release
+    vg = 148
+
 
 class _City(int):
     _name: str
@@ -565,6 +568,8 @@ class City(enum.Enum):
     # added after initial package release
     milton_keynes             = _City(345, "Milton Keynes")
     hradec_kralove            = _City(346, "Hradec Kralove")
+    zug                       = _City(347, "Zug")
+    tortola                   = _City(348, "Tortola")
 
     value: _City
 
@@ -2700,9 +2705,25 @@ class MIC(enum.Enum):
     gara = None
     besa = None
     wmsw = None
+    obge = None
     wmus = None
     wtrs = None
     lakx = None
+    srpt = None
+    brae = None
+    crbx = None
+    cxae = None
+    iswq = None
+    moon = None
+    opsi = None
+    crsx = None
+    liqh = None
+    em3s = None
+    otco = None
+    xmfe = None
+    _3dxe = None
+    boss = None
+    cdna = None
     fnfx = None
     nzfx = None
     bacr = None
@@ -3220,7 +3241,6 @@ class MIC(enum.Enum):
     vkab = None
     lafl = None
     lcur = None
-    liqh = None
     lmad = None
     lmnx = None
     mcxr = None
