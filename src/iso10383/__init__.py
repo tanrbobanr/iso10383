@@ -10,7 +10,7 @@ __author__ = "Tanner Corcoran"
 __email__ = "tannerbcorcoran@gmail.com"
 __license__ = "Apache 2.0 License"
 __copyright__ = "Copyright (c) 2024 Tanner Corcoran"
-__version__ = "2024.12.09"
+__version__ = "2025.02.10"
 __description__ = (
     "A wrapper around the data provided by the ISO 10383 specification."
 )
@@ -21,7 +21,6 @@ __download_url__ = "https://pypi.org/project/iso10383"
 from ._iso10383 import (
     MCC,
     ISOCC,
-    _City,
     City,
     Status,
     MICEntry,
@@ -32,7 +31,6 @@ from ._iso10383 import (
 __all__ = (
     "MCC",
     "ISOCC",
-    "_City",
     "City",
     "Status",
     "MICEntry",
